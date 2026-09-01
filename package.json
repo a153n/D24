@@ -1,0 +1,8 @@
+{
+  "name": "d24-investment-chama",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

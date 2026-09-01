@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="D24 Investment Chama member dashboard" />
+    <title>D24 | Investment Chama</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="D24 home"><span>D</span><div><strong>D24</strong><small>Investment Chama</small></div></a>
+      <nav aria-label="Main navigation">
+        <p class="nav-label">MAIN</p>
+        <a class="active" href="#dashboard"><span>⌂</span>Overview</a>
+        <p class="nav-label">MONEY</p>
+        <a href="#contributions"><span>◈</span>Contributions</a>
+        <a href="#documents"><span>▤</span>Records</a>
+        <p class="nav-label">INVESTMENTS</p>
+        <a href="#projects"><span>↗</span>Projects</a>
+        <a href="#projects"><span>◉</span>Proposals</a>
+        <p class="nav-label">PEOPLE</p>
+        <a href="#members"><span>◎</span>Members</a>
+        <a id="admin-nav" class="admin-nav" href="#admin"><span>⚙</span>Admin</a>
+      </nav>
+      <div class="side-bottom">
+        <div class="group-status"><i></i><span>Private investment group</span></div>
+        <button class="profile-mini" id="profile-mini" type="button"><span class="avatar mini">AM</span><span><b id="side-name">Member</b><small id="side-role">Member</small></span><span>⋮</span></button>
+        <button class="text-button" id="sign-out">Sign out</button>
+      </div>
+    </aside>
+
+    <main id="dashboard">
+      <header>
+        <div>
+          <p class="eyebrow">Loading date…</p>
+          <h1 id="welcomeGreeting"></h1>
+          <p class="header-subtitle">Here is your group at a glance.</p>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" id="notification-button" aria-label="Notifications"><span>♧</span><b></b></button>
+          <button class="avatar" aria-label="Your profile">AM</button>
+        </div>
+      </header>
+
+      <section class="hero" aria-labelledby="group-heading">
+        <div>
+          <p class="eyebrow warm">D24 INVESTMENT CHAMA</p>
+          <h2 id="group-heading">Growing together,<br />with intention.</h2>
+          <p>Our shared capital is building toward the next opportunity.</p>
+        </div>
+        <div class="hero-amount">
+          <span>Group capital</span>
+          <strong id="group-capital">KSh 0</strong>
+          <small id="month-total">No contributions recorded yet</small>
+        </div>
+        <div class="arc one"></div><div class="arc two"></div>
+      </section>
+
+      <section class="stats" aria-label="Group summary">
+        <article class="stat-card"><span class="stat-icon money-icon">KSh</span><div><small>GROUP CAPITAL</small><strong id="group-capital-stat">KSh 0</strong><em id="capital-change">+0 this month</em></div></article>
+        <article class="stat-card"><span class="stat-icon people-icon">◎</span><div><small>ACTIVE MEMBERS</small><strong id="member-count">0</strong><em id="member-status">Loading members</em></div></article>
+        <article class="stat-card"><span class="stat-icon project-icon-small">↗</span><div><small>ACTIVE PROJECTS</small><strong id="active-project-count">0</strong><em id="project-status">No active projects</em></div></article>
+        <article class="stat-card"><span class="stat-icon due-icon">◷</span><div><small>NEXT CONTRIBUTION</small><strong id="next-contribution-date">—</strong><em id="next-contribution-detail">KSh 5,000 due</em></div></article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel chart-panel" id="contributions">
+          <div class="panel-heading"><div><p class="eyebrow">CONTRIBUTIONS</p><h2>Capital progress</h2></div><button class="link-button" data-open="contribution-dialog">Record payment +</button></div>
+          <div class="chart-head"><div><strong id="contribution-total">KSh 0</strong><span id="contribution-caption">Current month</span></div><span class="chart-pill">Last 6 months</span></div>
+          <div class="chart" id="contribution-chart" aria-label="Contribution chart"></div>
+          <div class="month-row" id="month-row"></div>
+          <div class="payment-note"><span class="check">✓</span><span><b id="payment-title">Shared records are protected</b><small id="payment-detail">Sign in to view the D24 ledger.</small></span></div>
+        </article>
+
+        <article class="panel project-card" id="projects">
+          <div class="panel-heading"><div><p class="eyebrow">NEXT DECISION</p><h2>Project pipeline</h2></div><span class="tag" id="proposal-count">0 review</span></div>
+          <div class="project-icon">↗</div>
+          <h3 id="latest-project">No projects submitted</h3>
+          <p id="latest-description">Members can submit an investment proposal for group review.</p>
+          <div class="vote-summary" id="vote-summary">No vote open</div>
+          <div class="project-progress"><span id="project-progress-label">0% approval</span><i id="project-progress-fill"></i></div>
+          <div class="project-footer"><span id="project-target">Awaiting proposal</span><div class="project-actions"><button class="vote-button" id="vote-yes">Vote yes</button><button class="vote-button" id="vote-no">Vote no</button><button class="vote-button" id="approve-project">Approve</button><button class="danger-button" id="delete-project" style="display:none">Delete</button><button class="dark-button" data-open="project-dialog">Submit proposal</button></div></div>
+        </article>
+      </section>
+
+      <section class="quick-actions" aria-label="Quick actions">
+        <button data-open="contribution-dialog"><span>＋</span><b>Record contribution</b><small>Officer action</small></button>
+        <button data-open="project-dialog"><span>↗</span><b>Submit project</b><small>Start a proposal</small></button>
+        <button id="quick-export"><span>↓</span><b>Export ledger</b><small>Download CSV</small></button>
+      </section>
+      <section class="panel members" id="members">
+        <div class="panel-heading"><div><p class="eyebrow">MEMBERS</p><h2>Ownership at a glance</h2></div><button class="link-button" type="button" onclick="document.getElementById('members').scrollIntoView({behavior:'smooth'})">See all members →</button></div>
+        <div id="member-list" class="member-list">Loading members…</div>
+      </section>
+      <section class="panel activity" id="documents">
+        <div class="panel-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h2>Group records</h2></div><button class="link-button" id="export-ledger">Download ledger ↓</button></div>
+        <div id="activity-list" class="activity-list" aria-live="polite"></div>
+      </section>
+      <section class="panel admin-panel" id="admin">
+        <div class="panel-heading"><div><p class="eyebrow">OWNER AREA</p><h2>Admin centre</h2></div><span class="tag">Owner only</span></div>
+        <div class="admin-grid">
+          <article class="admin-guide"><h3>Adding a new member</h3><ol><li>Open your Supabase project.</li><li>Go to <b>Authentication → Users → Add user</b>.</li><li>Create the member with their email and a temporary password.</li><li>Ask them to sign in and change it privately.</li><li>Return here and assign their D24 role.</li></ol><p>Member accounts are created in Supabase so passwords never pass through this website.</p></article>
+          <article class="admin-guide"><h3>Roles explained</h3><p><b>Owner:</b> manages roles, records contributions, and confirms approved projects.</p><p><b>Treasurer:</b> records contributions and confirms approved projects.</p><p><b>Member:</b> views group records and submits/votes on proposals.</p></article>
+        </div>
+        <div class="admin-table-wrap"><table><thead><tr><th>Member</th><th>Current role</th><th>Change role</th></tr></thead><tbody id="admin-members"></tbody></table></div>
+        <p id="admin-message" class="admin-message" role="status"></p>
+      </section>
+    </main>
+    <dialog id="contribution-dialog"><form method="dialog" id="contribution-form"><div class="dialog-heading"><div><p class="eyebrow">NEW RECORD</p><h2>Record a contribution</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div><label>Member<select id="member-name" required></select></label><label>Amount (KSh)<input id="contribution-amount" type="number" min="1" required value="5000" /></label><label>Payment date<input id="contribution-date" type="date" required /></label><button class="dark-button submit" value="default">Save contribution</button></form></dialog>
+    <dialog id="project-dialog"><form method="dialog" id="project-form"><div class="dialog-heading"><div><p class="eyebrow">PROJECT PROPOSAL</p><h2>Submit for review</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div><label>Project name<input id="project-name" required placeholder="e.g. Event equipment rental" /></label><label>Capital required (KSh)<input id="project-cost" type="number" min="1" required placeholder="120000" /></label><label>Short description<textarea id="project-description" required placeholder="What will the group fund, and how will it earn income?"></textarea></label><button class="dark-button submit" value="default">Submit proposal</button></form></dialog>
+    <dialog id="notification-dialog"><div class="notification-box"><div class="dialog-heading"><div><p class="eyebrow">UPDATES</p><h2>Notifications</h2></div><button class="close" id="close-notifications" type="button">×</button></div><div id="notification-list" class="notification-list"></div></div></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <section id="auth-screen" class="auth-screen"><form id="login-form" class="login-card"><p class="eyebrow">D24 MEMBER ACCESS</p><h2>Welcome back.</h2><p>Sign in to your group’s private investment records.</p><label>Email<input id="login-email" type="email" required autocomplete="email" placeholder="you@example.com" /></label><label>Password<input id="login-password" type="password" required autocomplete="current-password" placeholder="Your password" /></label><p id="login-error" class="login-error" role="alert"></p><button class="dark-button submit" type="submit">Sign in to D24</button></form></section>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
